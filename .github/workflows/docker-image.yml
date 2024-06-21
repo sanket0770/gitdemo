@@ -22,7 +22,7 @@ jobs:
 
     - name: push to docker registry
       run: |
-        docker login -u ${{vars.DOCKER_USERNAME}} -p ${{env.DOCKER_PASSWORD}} 
+        docker login -u ${{vars.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
         docker tag my-image-name:latest sanket0770/django-image:latest
         docker push sanket0770/django-image:latest
       
