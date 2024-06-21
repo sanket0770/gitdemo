@@ -17,6 +17,21 @@ jobs:
    
     - name: GitHub Action for pylint
       uses: cclauss/GitHub-Action-for-pylint@0.7.0
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_SECRET_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: github-action-python-application
+        environment_name: Github-action-python-application-env
+        version_label: 12345
+        region: us-east-1
+        deployment_package: deploy.zip
+              
           
     
     - name: Build the Docker image
