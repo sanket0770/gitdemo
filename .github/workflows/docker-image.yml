@@ -21,5 +21,8 @@ jobs:
       run: docker images
 
     - name: push to docker registry
-      run: docker login -u sanket0770 -p dckr_pat_JSChm8l6s9qImfRf7yDGWsbhfoc
+      run: |
+        docker login -u sanket0770 -p dckr_pat_JSChm8l6s9qImfRf7yDGWsbhfoc 
+        docker push sanket0770/my-image-name:$(date +%s)
+      
     
