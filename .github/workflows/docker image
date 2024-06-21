@@ -1,0 +1,19 @@
+name: create docker image
+
+on:
+  push:
+    branches:
+      -main
+  pull-request:
+    branches:
+      -main
+
+jobs:
+  create docker image:
+    runs-on: ubuntu-latest
+
+    steps:
+    name: build docker image
+    run: |
+      docker build ./
+  

@@ -1,0 +1,49 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+   
+    - name: GitHub Action for pylint
+      uses: cclauss/GitHub-Action-for-pylint@0.7.0
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_SECRET_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+        application_name: github-action-python-application
+        environment_name: Github-action-python-application-env
+        version_label: 12345
+        region: us-east-1
+        deployment_package: deploy.zip
+              
+          
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:latest
+
+    - name:  check images
+      run: docker images
+
+    - name: push to docker registry
+      run: |
+        docker login -u ${{vars.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} 
+        docker tag my-image-name:latest sanket0770/django-image:latest
+        docker push sanket0770/django-image:latest
+      
+    
