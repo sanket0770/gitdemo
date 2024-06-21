@@ -19,3 +19,7 @@ jobs:
 
     - name:  check images
       run: docker images
+
+    - name: push to docker registry
+      run: docker login -u sanket0770 -p sanket&1998
+    
