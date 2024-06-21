@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:latest
 
     - name:  check images
       run: docker images
@@ -23,7 +23,7 @@ jobs:
     - name: push to docker registry
       run: |
         docker login -u sanket0770 -p dckr_pat_JSChm8l6s9qImfRf7yDGWsbhfoc 
-        docker tag $(date +%s) YOUR-USER-NAME/my-image-name:$(date +%s)
-        docker push sanket0770/my-image-name:$(date +%s)
+        docker tag $(date +%s) YOUR-USER-NAME/my-image-name:latest
+        docker push sanket0770/my-image-name:latest
       
     
