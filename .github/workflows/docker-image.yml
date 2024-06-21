@@ -14,6 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+   
+    - name: GitHub Action for pylint
+      uses: cclauss/GitHub-Action-for-pylint@0.7.0
+          
+    
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:latest
 
