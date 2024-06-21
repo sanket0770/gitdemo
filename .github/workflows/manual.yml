@@ -1,0 +1,20 @@
+name: label created
+on:
+  issues: [created, Closed]
+
+jobs:
+
+  send-msg:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: print hellow world
+       run echo "hello-world"
+    
+
+
+
+    
+  
+  
