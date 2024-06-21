@@ -1,7 +1,8 @@
 name: label created
 
 on:
-  issues: [created, Closed]
+  issues:
+    types: [opened]
 
 jobs:
 
