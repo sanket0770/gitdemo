@@ -1,4 +1,5 @@
 name: label created
+
 on:
   issues: [created, Closed]
 
