@@ -23,6 +23,7 @@ jobs:
     - name: push to docker registry
       run: |
         docker login -u sanket0770 -p dckr_pat_JSChm8l6s9qImfRf7yDGWsbhfoc 
-        docker push $(date +%s)
+        docker tag $(date +%s) YOUR-USER-NAME/$(date +%s)
+        docker push sanket0770/$(date +%s)
       
     
