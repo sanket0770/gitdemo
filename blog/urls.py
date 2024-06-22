@@ -13,5 +13,4 @@ urlpatterns = [
     path("signup", views.signup, name="signup"),
     path("upload", views.upload, name="upload"),
     path("upload2", views.upload2, name="upload2"),    
-   
 ]
